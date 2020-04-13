@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>ee-api-spec</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-flow: column;
+      height: 99.5vh;
+    }
+    
+    #topnav {
+      width: 100%;
+      height: fit-content;
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    #topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      vertical-align: middle;
+      padding: 10px 10px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    
+    #topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    #topnav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .consoleFrame {
+      text-align: center;
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+<nav id="topnav"></nav>
+</body>
+<script>
+  const apis = {};
+  // %%APPEND%% //
+
+  window.onload = () => {
+    const container = document.body;
+    const topnav = document.getElementById('topnav');
+    const iframes = {};
+    for (let prop in apis) {
+      if (apis.hasOwnProperty(prop)) {
+        const a = document.createElement('a');
+        a.href = `#${prop}`;
+        a.appendChild(document.createTextNode(prop));
+        topnav.append(a);
+        apis[prop] = a;
+
+        const iframe = document.createElement('iframe');
+        iframe.classList.add('consoleFrame');
+        iframe.src = `/${prop}/console#docs/summary/summary`;
+        iframe.hidden = true;
+        iframe.frameBorder = 0;
+        container.append(iframe);
+        iframes[prop] = iframe;
+      }
+    }
+    const handleHash = (event) => {
+      if (event.oldURL !== '') {
+        const oldSpec = new URL(event.oldURL).hash.slice(1);
+        apis[oldSpec].classList.remove('active');
+        iframes[oldSpec].hidden = true;
+      }
+      const newSpec = new URL(event.newURL).hash.slice(1);
+      apis[newSpec].classList.remove('active');
+      apis[newSpec].classList.add('active');
+      iframes[newSpec].hidden = false;
+    };
+
+    let newHash = window.location.hash;
+    if (newHash === '') {
+      newHash = Object.keys(apis)[0];
+    }
+    window.location.hash = newHash;
+    handleHash({
+      oldURL: '',
+      newURL: window.location.toString(),
+    });
+
+    window.onhashchange = handleHash;
+  };
+</script>
+
+</html>

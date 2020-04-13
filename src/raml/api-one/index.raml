@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: api-one
+version: v1
+description: Example specification
+
+/status:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "status1": "OK"
+              }
+      500:
+        body:
+          application/json:
+            example: |
+              {
+                "status1": "ERROR"
+              }
+/v1:

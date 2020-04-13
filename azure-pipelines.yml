@@ -1,0 +1,24 @@
+trigger:
+  - master
+pr:
+  - master
+pool:
+  vmImage: 'ubuntu-latest'
+name: $(Rev:r)
+
+stages:
+  - stage: Build
+    jobs:
+      - job: dryBuild
+        displayName: Dry Build
+        condition: ne(variables['Build.SourceBranch'], 'refs/heads/master')
+        steps:
+          - bash: yarn install
+          - bash: yarn build
+      - job: dockerBuild
+        displayName: Build Docker Image
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+        steps:
+          - bash: echo "Building docker image. This will take a while, grab a coffee :)"
+            displayName: This will take a while. Grab a coffee :)
+          - bash: docker build --build-arg BASE_URI=$(baseUri) -t live-api-spec:$(Build.BuildNumber) .
