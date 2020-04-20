@@ -10,4 +10,4 @@ export const ramlOutputRoot = path.join(__dirname, '../dist/raml');
 export const ramlRoots = readdirSync(ramlRoot, {withFileTypes: true})
     .filter(f => f.isDirectory())
     .map(dir => dir.name);
-export const apis = ramlRoots.filter(f => f !== '_common_')
+export const apis = ramlRoots.filter(f => f !== '__common__')
