@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf build coverage",
-    "start": "react-scripts --expose-gc --max_old_space_size=4096 start",
+    "start": "REACT_APP_BASE_URI=http://localhost:5001 react-scripts --expose-gc --max_old_space_size=4096 start",
     "build": "react-scripts --expose-gc --max_old_space_size=8192 build",
     "test": "react-scripts test"
   },
@@ -26,7 +26,6 @@
   "dependencies": {
     "amf-client-js": "^4.1.0-0",
     "api-console": "^6.1.1",
-    "lit-element": "^2.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },

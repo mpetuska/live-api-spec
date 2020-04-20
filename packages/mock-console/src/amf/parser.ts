@@ -1,4 +1,5 @@
 import {client, Core, model, parse, plugins, ProfileNames, render} from 'amf-client-js';
+import {BASE_URI} from "../index";
 
 const type = 'RAML 1.0';
 const parser = new Promise<parse.Parser>(async (res) => {
@@ -16,7 +17,7 @@ export const validateRAML = async (parsedRAML: model.document.BaseUnit): Promise
 
 export const parseRAML = async (apiName: string): Promise<object[] | object> => {
     const prs: any = await parser;
-    const parsedRAML = await prs.parseFileAsync(`${window.location.origin}/raml/${apiName}/index.raml`);
+    const parsedRAML = await prs.parseFileAsync(`${BASE_URI}/raml/${apiName}/index.raml`);
     const validationResult = await validateRAML(parsedRAML);
     if (validationResult.conforms) {
         const resolver = Core.resolver(type);

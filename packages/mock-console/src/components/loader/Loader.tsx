@@ -7,7 +7,7 @@ interface LoaderProps {
     spin?: boolean;
 }
 
-const Loader = ({text = "Loading API Specifications...", spin = true}: LoaderProps) => (
+const Loader = ({text, spin = true}: LoaderProps) => (
     <div className="Loader">
         <span>{text}</span>
         <img src={logo} className={spin ? "Loader-logo-s" : "Loader-logo"} alt="logo"/>

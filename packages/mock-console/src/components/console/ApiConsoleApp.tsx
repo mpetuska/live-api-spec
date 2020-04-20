@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import 'api-console/api-console-app';
 import {parseRAML} from "../../amf/parser";
 import ApiSelector from "./ApiSelector";
@@ -20,7 +20,14 @@ const ApiConsoleApp = ({apis}: ApiConsoleAppProps) => {
             apiConsole.current.selectedShape = 'summary';
             apiConsole.current.selectedShapeType = 'summary';
         })();
-    }, [apic]);
+    }, [apic, apiConsole]);
+
+    const onSelectorBtnClick = useCallback(() => setSelectorOpened(it => !it), [])
+    const onSelectorOpenedChange = useCallback(it => setSelectorOpened(it), [])
+    const onApiSelectionChange = useCallback(it => {
+        setSelectorOpened(false);
+        setApic(it);
+    }, [])
     return <div>
         <api-console-app
             app={true}
@@ -28,15 +35,12 @@ const ApiConsoleApp = ({apis}: ApiConsoleAppProps) => {
             ref={apiConsole}
             baseuri={`${BASE_URI}/${apic}`}
         >
-            <ApiSelectorBtn onClick={() => setSelectorOpened(it => !it)}/>
+            <ApiSelectorBtn onClick={onSelectorBtnClick}/>
         </api-console-app>
         <ApiSelector apis={apis}
                      opened={selectorOpened}
-                     onSelectionChange={it => {
-                         setSelectorOpened(false);
-                         setApic(it);
-                     }}
-                     onOpenedChanged={it => setSelectorOpened(it)}
+                     onSelectionChange={onApiSelectionChange}
+                     onOpenedChanged={onSelectorOpenedChange}
         />
     </div>
 }
