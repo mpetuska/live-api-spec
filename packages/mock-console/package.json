@@ -5,8 +5,7 @@
   "scripts": {
     "clean": "rimraf build coverage",
     "start": "REACT_APP_BASE_URI=http://localhost:5001 react-scripts --expose-gc --max_old_space_size=4096 start",
-    "build": "react-scripts --expose-gc --max_old_space_size=8192 build",
-    "test": "react-scripts test"
+    "build": "react-scripts --expose-gc --max_old_space_size=8192 build"
   },
   "eslintConfig": {
     "extends": "react-app"

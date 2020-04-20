@@ -18,7 +18,11 @@ async function validateRAML(name: string) {
         apisToLint = requested
     }
     console.log(`APIs to lint: ${apisToLint}`);
-    for (const api of apisToLint) {
-        await validateRAML(api);
+    try {
+        for (const api of apisToLint) {
+            await validateRAML(api);
+        }
+    } catch (e) {
+        process.exit(1);
     }
 })();
