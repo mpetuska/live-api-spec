@@ -21,4 +21,4 @@ stages:
         steps:
           - bash: echo "Building docker image. This will take a while, grab a coffee :)"
             displayName: This will take a while. Grab a coffee :)
-          - bash: docker build --build-arg BASE_URI=$(baseUri) -t live-api-spec:$(Build.BuildNumber) .
+          - bash: docker build --build-arg -t live-api-spec:$(Build.BuildNumber) .

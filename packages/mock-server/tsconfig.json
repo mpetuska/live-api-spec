@@ -7,10 +7,10 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "baseUrl": ".",
     "resolveJsonModule": true,
-    "outDir": "./dist",
+    "outDir": "./build",
     "paths": {
       "*": [
         "node_modules/*",
