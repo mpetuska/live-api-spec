@@ -27,7 +27,7 @@ async function loadMockAPI(app: any, name: string) {
 (async (app: Express) => {
     app.use(cors());
     const apis = readdirSync(ramlRoot, {withFileTypes: true})
-        .filter(f => f.isDirectory())
+        .filter(f => f.isDirectory() && f.name !== '__common__')
         .map(dir => dir.name);
     for (const api of apis) {
         await loadMockAPI(app, api);
