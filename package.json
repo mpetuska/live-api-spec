@@ -19,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn workspace mock-server validate"
+      "pre-commit": "yarn workspace mock-server validate"
     }
   },
   "devDependencies": {
