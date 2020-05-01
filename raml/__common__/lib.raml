@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+
+traits:
+  pagedQuery: !include traits/pagedQuery.raml
+  withErrors: !include traits/withErrors.raml
+  withRequestErrors: !include traits/withRequestErrors.raml
+
+types:
+  healthStatus: !include types/healthStatus.raml
+
+securitySchemes:
+  bearer: !include security/bearer.raml

@@ -1,0 +1,29 @@
+#%RAML 1.0 Trait
+
+queryParameters:
+  page?:
+    description: Page to fetch
+    type: integer
+    default: 1
+    example: 1
+  size?:
+    description: Number of items in the page
+    type: integer
+    default: 10
+    maximum: 50
+    example: 10
+
+responses:
+  200:
+    headers:
+      access-control-expose-headers:
+        type: string
+        example: x-total, x-next
+      x-total?:
+        type: number
+        description: Total count of results available
+        example: 69
+      x-next?:
+        type: string
+        description: Optional link to get the next page of the query if there is one
+        example: "http://domain.com:420/path/resource?page=2?size=10"

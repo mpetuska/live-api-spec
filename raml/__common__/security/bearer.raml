@@ -1,0 +1,17 @@
+#%RAML 1.0 SecurityScheme
+
+displayName: Bearer Auth
+description: Mocked bearer token security.
+type: x-custom
+describedBy:
+  headers:
+    Authorization:
+      description: Used to send a bearer token.
+      type: string
+      pattern: Bearer ([^\s]+)
+      example: "Bearer hdasgbvcohfaxjKS97578CXH235"
+  responses:
+    401:
+      description: Bad token
+    403:
+      description: Unauthorised

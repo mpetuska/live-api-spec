@@ -1,0 +1,30 @@
+#%RAML 1.0
+title: sample-api-one
+version: v1
+description: First sample API
+
+uses:
+  lib: lib.raml
+  common: ../__common__/lib.raml
+
+securedBy: [common.bearer]
+
+/status:
+  get:
+    responses:
+      200:
+        description: App and its dependencies are working
+        body:
+          application/json:
+            type: lib.status
+            example:
+              mongoDB: "OK"
+      404:
+        description: App not working
+      500:
+        description: Some of the app's dependencies are not working
+        body:
+          application/json:
+            type: lib.status
+            example:
+              mongoDB: "ERROR"
