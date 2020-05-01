@@ -2,7 +2,7 @@
   "name": "live-api-spec",
   "version": "1.0.0",
   "private": true,
-  "repository": "git@gitlab.com:lt.petuska/live-api-spec.git",
+  "repository": "git@gitlab.com:martynas.petuska/live-api-spec.git",
   "workspaces": [
     "console",
     "./"
